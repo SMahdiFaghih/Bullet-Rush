@@ -14,8 +14,6 @@ public class PlayerController : MonoBehaviour
     private GameObject LeftGunFireTransform;
     private GameObject RightGunFireTransform;
 
-    private DateTime Time;
-
     void Start()
     {
         Rigidbody = GetComponent<Rigidbody>();
@@ -27,7 +25,25 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Move();
+        Rotate();
+    }
+
+    private void Move()
+    {
         Rigidbody.velocity = (Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward) * Velocity;
+    }
+
+    private void Rotate()
+    {
+        Plane plane = new Plane(Vector3.up, transform.position);
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (plane.Raycast(ray, out float distance))
+        {
+            Vector3 hitPoint = ray.GetPoint(distance);
+            transform.LookAt(hitPoint);
+        }
     }
 
     private IEnumerator Fire()
