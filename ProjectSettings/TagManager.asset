@@ -6,6 +6,10 @@ TagManager:
   tags:
   - LeftGunFireTransform
   - RightGunFireTransform
+  - Obstacle
+  - RightGun
+  - LeftGun
+  - Area
   layers:
   - Default
   - TransparentFX
