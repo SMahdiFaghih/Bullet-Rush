@@ -13,7 +13,12 @@ public class EnemiesData : ScriptableObject
     public class Enemy
     {
         public Vector3 Scale = new Vector3();
+
         public int Speed;
         public int Health;
+
+        public Color Color;
+
+        public int SelectionChance;
     }
 }
