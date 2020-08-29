@@ -10,6 +10,7 @@ TagManager:
   - RightGun
   - LeftGun
   - Area
+  - Enemy
   layers:
   - Default
   - TransparentFX
