@@ -38,17 +38,17 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            SetEnemyNewProperties();
+            SetEnemyNewProperties(EnemyType - 1);
         }
     }
 
-    private void SetEnemyNewProperties()
+    public void SetEnemyNewProperties(int enemyType)
     {
-        EnemyType -= 1;
-        EnemiesData.Enemy enemyData = GameManager.Instance.EnemyTypes.Enemies[EnemyType];
+        EnemiesData.Enemy enemyData = GameManager.Instance.EnemyTypes.Enemies[enemyType];
 
         Speed = enemyData.Speed;
         Health = enemyData.Health;
+        EnemyType = enemyType;
 
         transform.localScale = enemyData.Scale;
         GetComponent<Renderer>().material.color = enemyData.Color;

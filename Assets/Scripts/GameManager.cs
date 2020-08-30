@@ -52,24 +52,10 @@ public class GameManager : MonoBehaviour
                 {
                     Vector3 enemySpawnPosition = new Vector3(i, 3, j);
                     GameObject enemy = Instantiate(EnemyPrefab, enemySpawnPosition, Quaternion.identity);
-                    SetEnemyProperties(enemy);
+                    enemy.GetComponent<EnemyController>().SetEnemyNewProperties(GetEnemyType());
                 }
             }
         }
-    }
-
-    private void SetEnemyProperties(GameObject enemy)
-    {
-        int enemyType = GetEnemyType();
-        EnemiesData.Enemy enemyData = EnemyTypes.Enemies[enemyType];
-
-        EnemyController enemyController = enemy.GetComponent<EnemyController>();
-        enemyController.Health = enemyData.Health;
-        enemyController.Speed = enemyData.Speed;
-        enemyController.EnemyType = enemyType;
-
-        enemy.transform.localScale = enemyData.Scale;
-        enemy.GetComponent<Renderer>().material.color = enemyData.Color;
     }
 
     private int GetEnemyType()
