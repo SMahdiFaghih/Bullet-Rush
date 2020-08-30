@@ -14,7 +14,7 @@ public class EnemiesData : ScriptableObject
     {
         public Vector3 Scale = new Vector3();
 
-        public int Speed;
+        public float Speed;
         public int Health;
 
         public Color Color;

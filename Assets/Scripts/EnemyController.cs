@@ -5,9 +5,11 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [HideInInspector]
-    public int Speed;
+    public float Speed;
     [HideInInspector]
     public int Health;
+    [HideInInspector]
+    public int EnemyType;
 
     private GameObject Player;
 
@@ -30,10 +32,25 @@ public class EnemyController : MonoBehaviour
 
     public void ReduceHealth()
     {
-        Health -= 1;
-        if (Health == 0)
+        if (Health == 1)
         {
             Destroy(gameObject);
         }
+        else
+        {
+            SetEnemyNewProperties();
+        }
+    }
+
+    private void SetEnemyNewProperties()
+    {
+        EnemyType -= 1;
+        EnemiesData.Enemy enemyData = GameManager.Instance.EnemyTypes.Enemies[EnemyType];
+
+        Speed = enemyData.Speed;
+        Health = enemyData.Health;
+
+        transform.localScale = enemyData.Scale;
+        GetComponent<Renderer>().material.color = enemyData.Color;
     }
 }

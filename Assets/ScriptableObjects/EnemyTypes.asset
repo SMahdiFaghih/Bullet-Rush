@@ -17,14 +17,24 @@ MonoBehaviour:
     Speed: 4
     Health: 1
     Color: {r: 0.9433962, g: 0.048949808, b: 0.048949808, a: 0}
-    SelectionChance: 25
-  - Scale: {x: 1.25, y: 1.25, z: 1.25}
-    Speed: 2
+    SelectionChance: 50
+  - Scale: {x: 1.2, y: 1.2, z: 1.2}
+    Speed: 3
     Health: 2
-    Color: {r: 0.051162425, g: 0.046991818, b: 0.9056604, a: 0}
-    SelectionChance: 4
-  - Scale: {x: 1.5, y: 1.5, z: 1.5}
-    Speed: 1
+    Color: {r: 0.90588236, g: 0.49518484, b: 0.04705884, a: 0}
+    SelectionChance: 10
+  - Scale: {x: 1.4, y: 1.4, z: 1.4}
+    Speed: 2.5
+    Health: 3
+    Color: {r: 0.9150943, g: 0.91199243, b: 0.047481313, a: 0}
+    SelectionChance: 8
+  - Scale: {x: 1.6, y: 1.6, z: 1.6}
+    Speed: 2
     Health: 4
     Color: {r: 0.053513322, g: 0.6509434, b: 0, a: 0}
-    SelectionChance: 1
+    SelectionChance: 5
+  - Scale: {x: 2, y: 2, z: 2}
+    Speed: 1
+    Health: 5
+    Color: {r: 0.07778566, g: 0.09393543, b: 0.8679245, a: 0}
+    SelectionChance: 3

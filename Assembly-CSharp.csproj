@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\EnemiesData.cs" />
      <Compile Include="Assets\Scripts\EnemyController.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\PlayerCollision.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>H:/Unity Projects/Bullet Rush/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

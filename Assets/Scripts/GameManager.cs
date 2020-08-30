@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
     public GameObject EnemySpawnZonesParent;
     public EnemiesData EnemyTypes;
     public GameObject EnemyPrefab;
@@ -14,6 +17,11 @@ public class GameManager : MonoBehaviour
     private int TotalSelectionChance = 0;
 
     private System.Random Random = new System.Random();
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -52,11 +60,13 @@ public class GameManager : MonoBehaviour
 
     private void SetEnemyProperties(GameObject enemy)
     {
-        EnemiesData.Enemy enemyData = EnemyTypes.Enemies[GetEnemyType()];
+        int enemyType = GetEnemyType();
+        EnemiesData.Enemy enemyData = EnemyTypes.Enemies[enemyType];
 
         EnemyController enemyController = enemy.GetComponent<EnemyController>();
         enemyController.Health = enemyData.Health;
         enemyController.Speed = enemyData.Speed;
+        enemyController.EnemyType = enemyType;
 
         enemy.transform.localScale = enemyData.Scale;
         enemy.GetComponent<Renderer>().material.color = enemyData.Color;
@@ -75,5 +85,10 @@ public class GameManager : MonoBehaviour
             }
         }
         return EnemyTypes.Enemies.Count;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
