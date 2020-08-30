@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Rigidbody.velocity = (Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward) * Velocity;
+        Rigidbody.velocity = (Input.GetAxis("Horizontal") * Vector3.right + Input.GetAxis("Vertical") * Vector3.forward) * Velocity;
     }
 
     private void Rotate()

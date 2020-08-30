@@ -5,9 +5,13 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Vector3 Offset;
-    public GameObject Player;
+    private GameObject Player;
 
-    // Update is called once per frame
+    void Awake()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     void Update()
     {
         transform.position = Player.transform.position + Offset;

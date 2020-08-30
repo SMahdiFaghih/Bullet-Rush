@@ -13,7 +13,7 @@ public class BulletCollision : MonoBehaviour
         Destroy(gameObject);
         if (collision.collider.tag == "Enemy")
         {
-            Destroy(collision.collider.gameObject);
+            collision.collider.gameObject.GetComponent<EnemyController>().ReduceHealth();
         }
     }
 }
