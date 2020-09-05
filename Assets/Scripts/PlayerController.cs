@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour
                 bullet.velocity = transform.forward * BulletVelocity;
             }
 
+            yield return new WaitForSeconds(0.05f);
+
             if (Input.GetAxis("Fire2") != 0)
             {
                 Rigidbody bullet = Instantiate(BulletPrefab, RightGunFireTransform.transform.position, RightGunFireTransform.transform.rotation).GetComponent<Rigidbody>();
@@ -64,7 +66,7 @@ public class PlayerController : MonoBehaviour
                 bullet.velocity = transform.forward * BulletVelocity;
             }
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }

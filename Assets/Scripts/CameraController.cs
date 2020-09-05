@@ -14,7 +14,6 @@ public class CameraController : MonoBehaviour
         Transform[] childGameObjects = Player.GetComponentsInChildren<Transform>();
         foreach (Transform transform in childGameObjects)
         {
-            Debug.Log(transform.gameObject.name);
             if (transform.gameObject.name == "CameraRig")
             {
                 CameraRig = transform;

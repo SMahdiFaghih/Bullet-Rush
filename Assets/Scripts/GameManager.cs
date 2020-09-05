@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     private Transform[] EnemySpwanZones;
     private int TotalSelectionChance = 0;
 
+    [HideInInspector]
+    public int NumOfEnemies = 0;
+    public FloatVariable NumOfDeadEnemies;
+
     private System.Random Random = new System.Random();
 
     void Awake()
@@ -25,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        NumOfDeadEnemies.Value = 0;
         EnemySpwanZones = EnemySpawnZonesParent.GetComponentsInChildren<Transform>();
         foreach (EnemiesData.Enemy enemy in EnemyTypes.Enemies)
         {
@@ -53,6 +58,7 @@ public class GameManager : MonoBehaviour
                     Vector3 enemySpawnPosition = new Vector3(i, 3, j);
                     GameObject enemy = Instantiate(EnemyPrefab, enemySpawnPosition, Quaternion.identity);
                     enemy.GetComponent<EnemyController>().SetEnemyNewProperties(GetEnemyType());
+                    NumOfEnemies++;
                 }
             }
         }

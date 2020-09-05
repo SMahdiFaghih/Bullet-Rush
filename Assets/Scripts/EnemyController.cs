@@ -34,6 +34,7 @@ public class EnemyController : MonoBehaviour
     {
         if (Health == 1)
         {
+            GameManager.Instance.NumOfDeadEnemies.Value++;
             Destroy(gameObject);
         }
         else
