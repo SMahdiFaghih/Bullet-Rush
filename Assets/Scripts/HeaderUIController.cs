@@ -16,6 +16,14 @@ public class HeaderUIController : MonoBehaviour
     public List<GameObject> GainedStars;
     private int StarToGainId = 0;
 
+    void Start()
+    {
+        for (int i=0;i < EmptyStars.Count;i++)
+        {
+            EmptyStars[i].GetComponentInChildren<Text>().text = StarsPercentage[i].Value.ToString();
+        }
+    }
+
     void Update()
     {
         float percentage = NumOfDeadEnemies.Value / GameManager.Instance.NumOfEnemies;
