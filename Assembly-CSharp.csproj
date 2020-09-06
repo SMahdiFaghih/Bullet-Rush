@@ -55,11 +55,11 @@
   <ItemGroup>
      <Compile Include="Assets\ScriptableObjects\EnemiesData.cs" />
      <Compile Include="Assets\ScriptableObjects\FloatVariable.cs" />
-     <Compile Include="Assets\Scripts\BarController.cs" />
      <Compile Include="Assets\Scripts\BulletCollision.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\EnemyController.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\HeaderUIController.cs" />
      <Compile Include="Assets\Scripts\PlayerCollision.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
  <Reference Include="Unity.Timeline.Editor">
