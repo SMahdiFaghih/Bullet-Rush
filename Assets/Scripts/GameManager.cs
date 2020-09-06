@@ -55,9 +55,10 @@ public class GameManager : MonoBehaviour
             {
                 for (float j = EnemySpwanZone.position.z - dimZ/2; j <= EnemySpwanZone.position.z + dimZ/2; j += 1.5f)
                 {
-                    Vector3 enemySpawnPosition = new Vector3(i, 3, j);
+                    int enemType = GetEnemyType();
+                    Vector3 enemySpawnPosition = new Vector3(i, EnemyTypes.Enemies[enemType].Scale.y + 0.25f, j);
                     GameObject enemy = Instantiate(EnemyPrefab, enemySpawnPosition, Quaternion.identity);
-                    enemy.GetComponent<EnemyController>().SetEnemyNewProperties(GetEnemyType());
+                    enemy.GetComponent<EnemyController>().SetEnemyNewProperties(enemType);
                     NumOfEnemies++;
                 }
             }
