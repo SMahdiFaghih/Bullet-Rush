@@ -11,6 +11,7 @@ TagManager:
   - LeftGun
   - Area
   - Enemy
+  - Helicopter Landing Pad
   layers:
   - Default
   - TransparentFX

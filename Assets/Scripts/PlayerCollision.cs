@@ -11,4 +11,12 @@ public class PlayerCollision : MonoBehaviour
             GameManager.Instance.Restart();
         }
     }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "Helicopter Landing Pad")
+        {
+            GameManager.Instance.GotoNextLevel();
+        }
+    }
 }

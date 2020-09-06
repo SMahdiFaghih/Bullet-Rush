@@ -79,6 +79,11 @@ public class GameManager : MonoBehaviour
         return EnemyTypes.Enemies.Count;
     }
 
+    public void GotoNextLevel()
+    {
+        Debug.Log("Win");
+    }
+
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
