@@ -8,6 +8,11 @@ public class PlayerController : MonoBehaviour
     public int Velocity = 5;
     public int BulletVelocity = 20;
 
+    public TextMesh BoostRemainingTimeText;
+    private int SpeedBoost = 1;
+    private float SpeedBoostDuration = 5.0f;
+    private float BoostRemainingTime;
+
     public GameObject BulletPrefab;
 
     private Rigidbody Rigidbody;
@@ -21,6 +26,7 @@ public class PlayerController : MonoBehaviour
         RightGunFireTransform = GameObject.FindGameObjectWithTag("RightGunFireTransform");
 
         StartCoroutine(Fire());
+        BoostRemainingTimeText.gameObject.SetActive(false);
     }
 
     void Update()
@@ -31,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Rigidbody.velocity = (Input.GetAxis("Horizontal") * Vector3.right + Input.GetAxis("Vertical") * Vector3.forward) * Velocity;
+        Rigidbody.velocity = (Input.GetAxis("Horizontal") * Vector3.right + Input.GetAxis("Vertical") * Vector3.forward) * Velocity * SpeedBoost;
     }
 
     private void Rotate()
@@ -44,6 +50,8 @@ public class PlayerController : MonoBehaviour
             Vector3 hitPoint = ray.GetPoint(distance);
             transform.LookAt(hitPoint);
         }
+
+        BoostRemainingTimeText.transform.rotation = Quaternion.identity;
     }
 
     private IEnumerator Fire()
@@ -67,6 +75,29 @@ public class PlayerController : MonoBehaviour
             }
 
             yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    public IEnumerator ActivateSpeedBoost()
+    {
+        if (SpeedBoost == 1)
+        {
+            BoostRemainingTime = SpeedBoostDuration;
+
+            SpeedBoost = 2;
+            BoostRemainingTimeText.gameObject.SetActive(true);
+            while (BoostRemainingTime > 0f)
+            {
+                BoostRemainingTime -= Time.deltaTime;
+                BoostRemainingTimeText.text = BoostRemainingTime.ToString("0.0") + "s";
+                yield return null;
+            }
+            SpeedBoost = 1;
+            BoostRemainingTimeText.gameObject.SetActive(false);
+        }
+        else
+        {
+            BoostRemainingTime += 5;
         }
     }
 }

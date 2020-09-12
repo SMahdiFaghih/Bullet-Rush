@@ -12,6 +12,7 @@ TagManager:
   - Area
   - Enemy
   - Helicopter Landing Pad
+  - Speed Boost
   layers:
   - Default
   - TransparentFX
