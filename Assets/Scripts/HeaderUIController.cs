@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HeaderUIController : MonoBehaviour
 {
@@ -16,12 +17,16 @@ public class HeaderUIController : MonoBehaviour
     public List<GameObject> GainedStars;
     private int StarToGainId = 0;
 
+    [Header("Level")]
+    public Text Level;
+
     void Start()
     {
         for (int i=0;i < EmptyStars.Count;i++)
         {
             EmptyStars[i].GetComponentInChildren<Text>().text = StarsPercentage[i].Value.ToString();
         }
+        Level.text = SceneManager.GetActiveScene().name;
     }
 
     void Update()
