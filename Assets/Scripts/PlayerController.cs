@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            BoostRemainingTime += 5;
+            BoostRemainingTime += SpeedBoostDuration;
         }
     }
 }
