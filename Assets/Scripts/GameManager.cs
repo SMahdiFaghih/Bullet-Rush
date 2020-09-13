@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -20,6 +21,9 @@ public class GameManager : MonoBehaviour
     public int NumOfEnemies = 0;
     public FloatVariable NumOfDeadEnemies;
 
+    public Canvas PauseMenu;
+    private Button[] PauseMenuButtons;
+
     private System.Random Random = new System.Random();
 
     void Awake()
@@ -36,6 +40,29 @@ public class GameManager : MonoBehaviour
             TotalSelectionChance += enemy.SelectionChance;
         }
         SpawnEnemies();
+        PauseMenu.gameObject.SetActive(false);
+        PauseMenuButtons = PauseMenu.GetComponentsInChildren<Button>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Time.timeScale == 1)
+            {
+                Time.timeScale = 0;
+                PauseMenu.gameObject.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1;
+                PauseMenu.gameObject.SetActive(false);
+                foreach (Button button in PauseMenuButtons)
+                {
+                    button.image.enabled = false;
+                }
+            }
+        }
     }
 
     private void SpawnEnemies()
