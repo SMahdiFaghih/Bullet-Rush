@@ -23,7 +23,7 @@ public class PlayerCollision : MonoBehaviour
     {
         if (collider.tag == "Helicopter Landing Pad")
         {
-            GameManager.Instance.GotoNextLevel();
+            GameManager.Instance.LoadNextLevel();
         }
         else if(collider.tag == "Speed Boost")
         {

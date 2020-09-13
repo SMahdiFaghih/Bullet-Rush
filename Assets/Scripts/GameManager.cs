@@ -26,6 +26,14 @@ public class GameManager : MonoBehaviour
 
     private System.Random Random = new System.Random();
 
+    [Header("Stars")]
+    private AudioSource LevelCompletedSound;
+    public AudioClip ZeroStarWinSound;
+    public AudioClip OneStarWinSound;
+    public AudioClip TwoStarWinSound;
+    public AudioClip ThreeStarWinSound;
+    public FloatVariable NumOfGainedStars;
+
     void Awake()
     {
         Instance = this;
@@ -42,6 +50,7 @@ public class GameManager : MonoBehaviour
         SpawnEnemies();
         PauseMenu.gameObject.SetActive(false);
         PauseMenuButtons = PauseMenu.GetComponentsInChildren<Button>();
+        LevelCompletedSound = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -107,9 +116,24 @@ public class GameManager : MonoBehaviour
         return EnemyTypes.Enemies.Count;
     }
 
-    public void GotoNextLevel()
+    public void LoadNextLevel()
     {
-        Debug.Log("Win");
+        switch (NumOfGainedStars.Value)
+        {
+            case 0:
+                LevelCompletedSound.clip = ZeroStarWinSound;
+                break;
+            case 1:
+                LevelCompletedSound.clip = OneStarWinSound;
+                break;
+            case 2:
+                LevelCompletedSound.clip = TwoStarWinSound;
+                break;
+            case 3:
+                LevelCompletedSound.clip = ThreeStarWinSound;
+                break;
+        }
+        LevelCompletedSound.Play();
     }
 
     public void Restart()

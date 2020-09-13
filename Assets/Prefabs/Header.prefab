@@ -244,6 +244,7 @@ MonoBehaviour:
   - {fileID: 1184967400498421228}
   - {fileID: 1184967401519695552}
   - {fileID: 1184967401842216444}
+  NumOfGainedStars: {fileID: 11400000, guid: dfaa1dd486a1f5b43be0349199ea5623, type: 2}
   Level: {fileID: 1184967401726400961}
 --- !u!82 &1549744413
 AudioSource:

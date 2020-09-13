@@ -16,7 +16,7 @@ public class HeaderUIController : MonoBehaviour
     public List<GameObject> EmptyStars;
     public List<GameObject> GainedStars;
     private AudioSource CollectStarSound;
-    private int StarToGainId = 0;
+    public FloatVariable NumOfGainedStars;
 
     [Header("Level")]
     public Text Level;
@@ -37,7 +37,7 @@ public class HeaderUIController : MonoBehaviour
         FillBar.fillAmount = percentage;
         percentage *= 100;
         PercentageOfDeadEnemies.text = Mathf.Floor(percentage).ToString() + "%";
-        if (StarToGainId < 3)
+        if (NumOfGainedStars.Value < 3)
         {
             CheckGainStar(percentage);
         }
@@ -45,10 +45,10 @@ public class HeaderUIController : MonoBehaviour
 
     private void CheckGainStar(float deadEnemiesPercentage)
     {
-        if (deadEnemiesPercentage >= StarsPercentage[StarToGainId].Value)
+        if (deadEnemiesPercentage >= StarsPercentage[(int) NumOfGainedStars.Value].Value)
         {
-            GainStar(StarToGainId);
-            StarToGainId++;
+            GainStar((int) NumOfGainedStars.Value);
+            NumOfGainedStars.Value ++;
         }
     }
 
