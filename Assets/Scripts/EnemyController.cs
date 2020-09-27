@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [HideInInspector]
+    public static bool LevelIsOver = false;
+    [HideInInspector]
     public float Speed;
     [HideInInspector]
     public int Health;
@@ -21,7 +23,10 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         transform.LookAt(Player.transform);
-        Move();
+        if (!LevelIsOver)
+        {
+            Move();
+        }
     }
 
     private void Move()

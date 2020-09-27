@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [HideInInspector]
+    public static bool LevelIsOver = false;
+
     public int Velocity = 5;
     public int BulletVelocity = 20;
 
@@ -23,20 +26,31 @@ public class PlayerController : MonoBehaviour
     private GameObject LeftGunFireTransform;
     private GameObject RightGunFireTransform;
 
+    private Coroutine FireCoroutine = null;
+
     void Start()
     {
         Rigidbody = GetComponent<Rigidbody>();
         LeftGunFireTransform = GameObject.FindGameObjectWithTag("LeftGunFireTransform");
         RightGunFireTransform = GameObject.FindGameObjectWithTag("RightGunFireTransform");
 
-        StartCoroutine(Fire());
+        FireCoroutine = StartCoroutine(Fire());
         BoostRemainingTimeText.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        Move();
-        Rotate();
+        if (!LevelIsOver)
+        {
+            Move();
+            Rotate();
+        }
+        else
+        {
+            StopCoroutine(FireCoroutine);
+            RightGunShotSound.Stop();
+            LeftGunShotSound.Stop();
+        }
     }
 
     private void Move()

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     private PlayerController PlayerController;
+    private bool LevelCompleted = false;
 
     void Start()
     {
@@ -13,22 +14,29 @@ public class PlayerCollision : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Enemy")
+        if (!LevelCompleted)
         {
-            GameManager.Instance.Restart();
+            if (collision.collider.tag == "Enemy")
+            {
+                GameManager.Instance.Restart();
+            }
         }
     }
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.tag == "Helicopter Landing Pad")
+        if (!LevelCompleted)
         {
-            GameManager.Instance.LoadNextLevel();
-        }
-        else if(collider.tag == "Speed Boost")
-        {
-            Destroy(collider.gameObject);
-            StartCoroutine(PlayerController.ActivateSpeedBoost());
+            if (collider.tag == "Helicopter Landing Pad")
+            {
+                LevelCompleted = true;
+                GameManager.Instance.StartLevelCompletedProcesses();
+            }
+            else if (collider.tag == "Speed Boost")
+            {
+                Destroy(collider.gameObject);
+                StartCoroutine(PlayerController.ActivateSpeedBoost());
+            }
         }
     }
 }

@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public GameObject Player;
+    private float CelebrateWinJumpForce = 250;
+
     public GameObject EnemySpawnZonesParent;
     public EnemiesData EnemyTypes;
     public GameObject EnemyPrefab;
@@ -116,7 +119,18 @@ public class GameManager : MonoBehaviour
         return EnemyTypes.Enemies.Count;
     }
 
-    public void LoadNextLevel()
+    public void StartLevelCompletedProcesses()
+    {
+        Player.transform.eulerAngles = new Vector3(0, 180, 0);
+        StartCoroutine(CelebrateWin());
+        PlayLevelCompletedSound();
+        PlayerController.LevelIsOver = true;
+        EnemyController.LevelIsOver = true;
+        CameraController.LevelIsOver = true;
+        //todo
+    }
+
+    private void PlayLevelCompletedSound()
     {
         switch (NumOfGainedStars.Value)
         {
@@ -134,6 +148,20 @@ public class GameManager : MonoBehaviour
                 break;
         }
         LevelCompletedSound.Play();
+    }
+
+    private IEnumerator CelebrateWin()
+    {
+        Player.GetComponent<Animator>().enabled = true;
+        Rigidbody rigidbody = Player.GetComponent<Rigidbody>();
+        rigidbody.velocity = Vector3.zero;
+
+        while (true)
+        {
+            rigidbody.AddForce(CelebrateWinJumpForce * transform.up);
+
+            yield return new WaitForSeconds(2);
+        }
     }
 
     public void Restart()

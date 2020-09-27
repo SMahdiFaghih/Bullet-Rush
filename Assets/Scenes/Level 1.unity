@@ -699,6 +699,12 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 1625430022}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &926213917 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6815491713115272687, guid: 50ca07c87247961449c82e3a6ef99dc2,
+    type: 3}
+  m_PrefabInstance: {fileID: 6815491712618328318}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &963194227 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1486438081657708230, guid: 84c1498fd0a11aa4dab734fd6594b90c,
@@ -2140,7 +2146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677326775}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.26, z: 15}
+  m_LocalPosition: {x: 0, y: 0.3, z: 14}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 470148549}
@@ -2401,6 +2407,16 @@ PrefabInstance:
       propertyPath: PauseMenu
       value: 
       objectReference: {fileID: 1772113644}
+    - target: {fileID: 626772174837112997, guid: 726e39466807bca44b369494687f56ea,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 626772174837112997, guid: 726e39466807bca44b369494687f56ea,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 926213917}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 726e39466807bca44b369494687f56ea, type: 3}
 --- !u!1001 &1184967401932333990
@@ -2594,6 +2610,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1486438081657708224, guid: 84c1498fd0a11aa4dab734fd6594b90c,
+        type: 3}
+      propertyPath: LevelCompletedOffset.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1486438081657708224, guid: 84c1498fd0a11aa4dab734fd6594b90c,
+        type: 3}
+      propertyPath: LevelCompletedOffset.z
+      value: -5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84c1498fd0a11aa4dab734fd6594b90c, type: 3}
 --- !u!1001 &6636668250359486671
@@ -2603,6 +2629,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6636668249923086933, guid: 7e58d9dfde93ff04a8a573b8d1ba3321,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 6.43e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6636668249923086933, guid: 7e58d9dfde93ff04a8a573b8d1ba3321,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 6636668249923086933, guid: 7e58d9dfde93ff04a8a573b8d1ba3321,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 6.43e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6636668249923086933, guid: 7e58d9dfde93ff04a8a573b8d1ba3321,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 2.4088754e+16
+      objectReference: {fileID: 0}
     - target: {fileID: 6636668249923086934, guid: 7e58d9dfde93ff04a8a573b8d1ba3321,
         type: 3}
       propertyPath: m_Name
@@ -2662,26 +2708,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6636668249923086933, guid: 7e58d9dfde93ff04a8a573b8d1ba3321,
-        type: 3}
-      propertyPath: m_BoundingSphereOverride.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6636668249923086933, guid: 7e58d9dfde93ff04a8a573b8d1ba3321,
-        type: 3}
-      propertyPath: m_BoundingSphereOverride.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6636668249923086933, guid: 7e58d9dfde93ff04a8a573b8d1ba3321,
-        type: 3}
-      propertyPath: m_BoundingSphereOverride.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6636668249923086933, guid: 7e58d9dfde93ff04a8a573b8d1ba3321,
-        type: 3}
-      propertyPath: m_BoundingSphereOverride.w
-      value: 4.5918e-41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e58d9dfde93ff04a8a573b8d1ba3321, type: 3}
