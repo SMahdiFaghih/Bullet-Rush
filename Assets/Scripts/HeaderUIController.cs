@@ -23,6 +23,7 @@ public class HeaderUIController : MonoBehaviour
 
     void Start()
     {
+        NumOfGainedStars.Value = 0;
         for (int i=0;i < EmptyStars.Count;i++)
         {
             EmptyStars[i].GetComponentInChildren<Text>().text = StarsPercentage[i].Value.ToString();
@@ -35,8 +36,8 @@ public class HeaderUIController : MonoBehaviour
     {
         float percentage = NumOfDeadEnemies.Value / GameManager.Instance.NumOfEnemies;
         FillBar.fillAmount = percentage;
-        percentage *= 100;
-        PercentageOfDeadEnemies.text = Mathf.Floor(percentage).ToString() + "%";
+        percentage = Mathf.Floor(percentage * 100);
+        PercentageOfDeadEnemies.text = percentage.ToString() + "%";
         if (NumOfGainedStars.Value < 3)
         {
             CheckGainStar(percentage);
