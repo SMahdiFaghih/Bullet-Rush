@@ -24,7 +24,9 @@ public class CameraController : MonoBehaviour
                 break;
             }
         }
+        IsLevelCompleted = false;
     }
+
 
     void Update()
     {

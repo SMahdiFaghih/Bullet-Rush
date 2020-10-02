@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
         FireCoroutine = StartCoroutine(Fire());
         BoostRemainingTimeText.gameObject.SetActive(false);
+        IsLevelCompleted = false;
     }
 
     void Update()

@@ -20,6 +20,11 @@ public class EnemyController : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    void Start()
+    {
+        IsLevelCompleted = false;
+    }
+
     void Update()
     {
         transform.LookAt(Player.transform);
