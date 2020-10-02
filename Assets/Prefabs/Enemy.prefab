@@ -125,3 +125,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   Health: 0
+  EnemyType: 0

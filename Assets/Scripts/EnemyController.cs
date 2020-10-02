@@ -32,6 +32,11 @@ public class EnemyController : MonoBehaviour
         {
             Move();
         }
+        if (transform.position.y < 0)
+        {
+            GameManager.Instance.NumOfDeadEnemies.Value++;
+            Destroy(gameObject);
+        }
     }
 
     private void Move()
