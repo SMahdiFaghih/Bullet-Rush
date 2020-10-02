@@ -24,8 +24,10 @@ public class GameManager : MonoBehaviour
     public int NumOfEnemies = 0;
     public FloatVariable NumOfDeadEnemies;
 
-    public Canvas PauseMenu;
+    public GameObject PauseMenu;
     private Button[] PauseMenuButtons;
+
+    public GameObject LevelCompletedUI;
 
     private System.Random Random = new System.Random();
 
@@ -54,6 +56,7 @@ public class GameManager : MonoBehaviour
         PauseMenu.gameObject.SetActive(false);
         PauseMenuButtons = PauseMenu.GetComponentsInChildren<Button>();
         LevelCompletedSound = GetComponent<AudioSource>();
+        LevelCompletedUI.SetActive(false);
     }
 
     void Update()
@@ -127,7 +130,7 @@ public class GameManager : MonoBehaviour
         PlayerController.LevelIsOver = true;
         EnemyController.LevelIsOver = true;
         CameraController.LevelIsOver = true;
-        //todo
+        LevelCompletedUI.SetActive(true);
     }
 
     private void PlayLevelCompletedSound()

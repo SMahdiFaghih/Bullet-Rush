@@ -13,8 +13,10 @@ public class HeaderUIController : MonoBehaviour
 
     [Header("Stars")]
     public List<FloatVariable> StarsPercentage;
-    public List<GameObject> EmptyStars;
-    public List<GameObject> GainedStars;
+    public List<GameObject> HeaderEmptyStars;
+    public List<GameObject> HeaderGainedStars;
+    public List<GameObject> LevelCompletedUIEmptyStars;
+    public List<GameObject> LevelCompletedUIGainedStars;
     private AudioSource CollectStarSound;
     public FloatVariable NumOfGainedStars;
 
@@ -24,9 +26,9 @@ public class HeaderUIController : MonoBehaviour
     void Start()
     {
         NumOfGainedStars.Value = 0;
-        for (int i=0;i < EmptyStars.Count;i++)
+        for (int i=0;i < HeaderEmptyStars.Count;i++)
         {
-            EmptyStars[i].GetComponentInChildren<Text>().text = StarsPercentage[i].Value.ToString();
+            HeaderEmptyStars[i].GetComponentInChildren<Text>().text = StarsPercentage[i].Value.ToString();
         }
         Level.text = SceneManager.GetActiveScene().name;
         CollectStarSound = GetComponent<AudioSource>();
@@ -55,8 +57,10 @@ public class HeaderUIController : MonoBehaviour
 
     private void GainStar(int id)
     {
-        EmptyStars[id].SetActive(false);
-        GainedStars[id].SetActive(true);
+        HeaderEmptyStars[id].SetActive(false);
+        LevelCompletedUIEmptyStars[id].SetActive(false);
+        HeaderGainedStars[id].SetActive(true);
+        LevelCompletedUIGainedStars[id].SetActive(true);
         CollectStarSound.Play();
     }
 }
