@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [HideInInspector]
-    public static bool LevelIsOver = false;
+    public static bool IsLevelCompleted = false;
 
     public Vector3 Offset;
     public Vector3 LevelCompletedOffset;
@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if (LevelIsOver)
+        if (IsLevelCompleted)
         {
             transform.position = Player.transform.position + LevelCompletedOffset;
             transform.LookAt(Player.transform);

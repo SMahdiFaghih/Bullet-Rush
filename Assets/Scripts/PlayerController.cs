@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [HideInInspector]
-    public static bool LevelIsOver = false;
+    public static bool IsLevelCompleted = false;
 
     public int Velocity = 5;
     public int BulletVelocity = 20;
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!LevelIsOver)
+        if (!IsLevelCompleted)
         {
             Move();
             Rotate();

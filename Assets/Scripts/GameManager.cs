@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public GameObject Player;
+
     private float CelebrateWinJumpForce = 250;
+    private bool IsLevelCompleted;
 
     public GameObject EnemySpawnZonesParent;
     public EnemiesData EnemyTypes;
@@ -55,26 +57,30 @@ public class GameManager : MonoBehaviour
         SpawnEnemies();
         PauseMenu.gameObject.SetActive(false);
         PauseMenuButtons = PauseMenu.GetComponentsInChildren<Button>();
+        IsLevelCompleted = false;
         LevelCompletedSound = GetComponent<AudioSource>();
         LevelCompletedUI.SetActive(false);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!IsLevelCompleted)
         {
-            if (Time.timeScale == 1)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Time.timeScale = 0;
-                PauseMenu.gameObject.SetActive(true);
-            }
-            else
-            {
-                Time.timeScale = 1;
-                PauseMenu.gameObject.SetActive(false);
-                foreach (Button button in PauseMenuButtons)
+                if (Time.timeScale == 1)
                 {
-                    button.image.enabled = false;
+                    Time.timeScale = 0;
+                    PauseMenu.gameObject.SetActive(true);
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                    PauseMenu.gameObject.SetActive(false);
+                    foreach (Button button in PauseMenuButtons)
+                    {
+                        button.image.enabled = false;
+                    }
                 }
             }
         }
@@ -127,9 +133,10 @@ public class GameManager : MonoBehaviour
         Player.transform.eulerAngles = new Vector3(0, 0, 0);
         StartCoroutine(CelebrateWin());
         PlayLevelCompletedSound();
-        PlayerController.LevelIsOver = true;
-        EnemyController.LevelIsOver = true;
-        CameraController.LevelIsOver = true;
+        IsLevelCompleted = true;
+        PlayerController.IsLevelCompleted = true;
+        EnemyController.IsLevelCompleted = true;
+        CameraController.IsLevelCompleted = true;
         LevelCompletedUI.SetActive(true);
     }
 
