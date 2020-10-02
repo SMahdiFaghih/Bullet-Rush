@@ -130,6 +130,7 @@ public class GameManager : MonoBehaviour
 
     public void StartLevelCompletedProcesses()
     {
+        SetNextLevel();
         Player.transform.eulerAngles = new Vector3(0, 0, 0);
         StartCoroutine(CelebrateWin());
         PlayLevelCompletedSound();
@@ -138,6 +139,17 @@ public class GameManager : MonoBehaviour
         EnemyController.IsLevelCompleted = true;
         CameraController.IsLevelCompleted = true;
         LevelCompletedUI.SetActive(true);
+    }
+
+    private void SetNextLevel()
+    {
+        int currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        string path = SceneUtility.GetScenePathByBuildIndex(currentSceneBuildIndex + 1);
+        int slash = path.LastIndexOf('/');
+        string nextSceneName = path.Substring(slash + 1);
+        int dot = nextSceneName.LastIndexOf('.');
+        nextSceneName = nextSceneName.Substring(0, dot);
+        PlayerPrefs.SetString("Current Level", nextSceneName);
     }
 
     private void PlayLevelCompletedSound()

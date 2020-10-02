@@ -6,15 +6,20 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MenuButtonsController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
-{ 
+{
+    public bool IsLevelCompletedIcon = false;
+
     private Button button;
     private AudioSource ButtonClickSound;
 
     void Awake()
     {
         button = GetComponent<Button>();
-        button.image.enabled = false;
-        ButtonClickSound = GetComponent<AudioSource>();
+        if (!IsLevelCompletedIcon)
+        {
+            button.image.enabled = false;
+            ButtonClickSound = GetComponent<AudioSource>();
+        }
     }
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
@@ -24,7 +29,10 @@ public class MenuButtonsController : MonoBehaviour, IPointerEnterHandler, IPoint
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
-        button.image.enabled = false;
+        if (!IsLevelCompletedIcon)
+        {
+            button.image.enabled = false;
+        }
     }
 
     public void OnNewGameButtonClick()
@@ -56,8 +64,8 @@ public class MenuButtonsController : MonoBehaviour, IPointerEnterHandler, IPoint
     public void OnPauseMenuRestartButtonClick()
     {
         ButtonClickSound.Play();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
+        GameManager.Instance.Restart();
     }
 
     public void OnMainMenuExitButtonClick()
@@ -72,19 +80,23 @@ public class MenuButtonsController : MonoBehaviour, IPointerEnterHandler, IPoint
 
     public void OnPauseMenuExitButtonClick()
     {
-        if (PlayerPrefs.HasKey("Current Level"))
-        {
-            if (int.Parse(PlayerPrefs.GetString("Current Level").Split()[1]) < int.Parse(SceneManager.GetActiveScene().name.Split()[1]))
-            {
-                PlayerPrefs.SetString("Current Level", SceneManager.GetActiveScene().name);
-            }
-        }
-        else
-        {
-            PlayerPrefs.SetString("Current Level", SceneManager.GetActiveScene().name);
-        }
-        SceneManager.LoadScene("Main Menu");
         Time.timeScale = 1;
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void OnLevelCompletedRestartIconClick()
+    {
+        GameManager.Instance.Restart();
+    }
+
+    public void OnLevelCompletedMainMenuIconClick()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void OnLevelCompletedNextLevelIconClick()
+    {
+        SceneManager.LoadScene(PlayerPrefs.GetString("Current Level"));
     }
 
     public void OnCreditsSceneBackButtonClick()
